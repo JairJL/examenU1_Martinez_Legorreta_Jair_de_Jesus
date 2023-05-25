@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Presentación de Imágenes</title>
+  <style>
+    .image-container {
+      width: 400px;
+      height: 300px;
+      margin: 0 auto;
+    }
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .button {
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img id="image" src="" alt="Imagen">
+  </div>
+  <div class="button-container">
+    <button class="button" id="previousButton">Anterior</button>
+    <button class="button" id="nextButton">Siguiente</button>
+  </div>
+
+  <script>
+    // Arreglo con las URL de las imágenes
+    var imageUrls = [
+      "Luffy.jpg",
+      "Zoro.jpg",
+      "Nami.jpg",
+      "Sanji.jpg",
+      "Usopp.jpg"
+    ];
+
+    var currentIndex = 0;
+    var imageElement = document.getElementById("image");
+    var previousButton = document.getElementById("previousButton");
+    var nextButton = document.getElementById("nextButton");
+
+    // Función para actualizar la imagen mostrada
+    function updateImage() {
+      var imageUrl = imageUrls[currentIndex];
+      imageElement.src = imageUrl;
+    }
+
+    // Función para mostrar la imagen anterior
+    function showPreviousImage() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = imageUrls.length - 1;
+      }
+      updateImage();
+    }
+
+    // Función para mostrar la siguiente imagen
+    function showNextImage() {
+      currentIndex++;
+      if (currentIndex >= imageUrls.length) {
+        currentIndex = 0;
+      }
+      updateImage();
+    }
+
+    // Agregar event listeners a los botones
+    previousButton.addEventListener("click", showPreviousImage);
+    nextButton.addEventListener("click", showNextImage);
+
+    // Mostrar la primera imagen al cargar la página
+    updateImage();
+  </script>
+</body>
+</html>
